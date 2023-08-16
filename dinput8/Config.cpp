@@ -69,7 +69,7 @@ void Config::parseConfig(boost::property_tree::ptree pt) const
 	// Section - Proxy
 	hook->proxyEnable = pt.get("proxy.enable", true);
 	hook->connectRetail = pt.get("proxy.connectToRetail", false);
-	hook->serverAddress = pt.get("proxy.serverAddress", "bfbc2.grzyb.dev");
+	hook->serverAddress = pt.get("proxy.serverAddress", "bfbc2.grzyb.app");
 	hook->serverPort = pt.get("proxy.serverPort", 443);
 	hook->serverSecure = pt.get("proxy.serverSecure", true);
 
