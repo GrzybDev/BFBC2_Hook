@@ -84,7 +84,7 @@ You can change the default behavior of the hook by creating JSON config named `c
 | patches.patchSSL             | Patch game SSL certificate verification (required for hook proxy to work)        | Boolean (true/false)           | true                              |
 | proxy.enable                 | Enable/Disable hook proxy                                                        | Boolean (true/false)           | true                              |
 | proxy.connectToRetail        | Connect to retail server instead of custom server (useful for capturing traffic) | Boolean (true/false)           | false                             |
-| proxy.serverAddress          | IP Address or Domain Name of custom server implementation                        | Any string                     | bfbc2.grzyb.dev                   |
+| proxy.serverAddress          | IP Address or Domain Name of custom server implementation                        | Any string                     | bfbc2.grzyb.app                   |
 | proxy.serverPort             | Port of custom server implementation                                             | Unsigned short (Range 0-65535) | 443                               |
 | proxy.serverSecure           | Use secure connection (wss) or not encrypted connection (ws)                     | Boolean (true/false)           | true                              |
 | overrides.clientVersion      | Client version identifier                                                        | Any string                     | "ROMEPC795745"                    |
