@@ -86,6 +86,7 @@ jobs:
           popd
           del C:\Strawberry\c\lib\libcrypto.a
           del C:\Strawberry\c\lib\libssl.a
+          del "C:\Program Files\OpenSSL" /f /s /q
           cmake -A Win32 -DBOOST_ROOT=..\..\third_party\boost\ -DBoost_USE_STATIC_LIBS=ON -DOPENSSL_INCLUDE_DIR=..\..\third_party\openssl_new\include -DOPENSSL_LIBRARIES=..\..\third_party\openssl_new\lib -DZLIB_LIBRARY=%ZLIB_FILE_PATH% -DZLIB_INCLUDE_DIR=..\..\third_party\zlib\include -DCMAKE_INSTALL_PREFIX=..\..\third_party\cpprestsdk .
           msbuild INSTALL.vcxproj /p:Configuration=Release /p:Platform=Win32
       
@@ -101,15 +102,22 @@ jobs:
 
       - name: Initialize CodeQL
         uses: github/codeql-action/init@v2
+        if: ${{ github.event_name != 'release' }}
         with:
           queries: security-extended,security-and-quality
           languages: "cpp"
           source-root: dinput8
       
       - name: Autobuild hook
+        if: ${{ github.event_name != 'release' }}
         uses: github/codeql-action/autobuild@v2
 
+      - name: Build hook
+        if: ${{ github.event_name == 'release' }}
+        run: msbuild /p:Platform="x86" /p:Configuration="Release"
+
       - name: Perform CodeQL Analysis
+        if: ${{ github.event_name != 'release' }}
         uses: github/codeql-action/analyze@v2
       
       - name: Upload artifact
