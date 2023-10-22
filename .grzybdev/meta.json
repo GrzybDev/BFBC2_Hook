@@ -1,6 +1,6 @@
 {
   "name": "Hook for Battlefield: Bad Company 2",
-  "suite": "tdpa_pl",
+  "suite": "emu_bfbc2",
   "target": [0],
   "type": 3,
   "theme": 0
