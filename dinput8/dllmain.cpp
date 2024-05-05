@@ -20,6 +20,19 @@ VOID LoadOriginalLibrary(const std::string& libraryName)
 	}
 }
 
+VOID UnprotectProcessMemory()
+{
+	auto hModule = GetModuleHandle(nullptr);
+
+	const auto dosHeader = reinterpret_cast<PIMAGE_DOS_HEADER>(hModule);
+	const auto ntHeaders = reinterpret_cast<PIMAGE_NT_HEADERS>(reinterpret_cast<DWORD>(hModule) + dosHeader->e_lfanew);
+
+	// Unprotect entire PE image.
+	const auto size = ntHeaders->OptionalHeader.SizeOfImage;
+	DWORD oldProtect;
+	VirtualProtect(hModule, size, PAGE_EXECUTE_READWRITE, &oldProtect);
+}
+
 BOOL APIENTRY DllMain(HMODULE /*hModule*/,
                       const DWORD ulReasonForCall,
                       LPVOID /*lpReserved*/
@@ -28,6 +41,7 @@ BOOL APIENTRY DllMain(HMODULE /*hModule*/,
 	if (ulReasonForCall == DLL_PROCESS_ATTACH)
 	{
 		LoadOriginalLibrary("dinput8.dll");
+		UnprotectProcessMemory();
 	}
 
 	return TRUE;
