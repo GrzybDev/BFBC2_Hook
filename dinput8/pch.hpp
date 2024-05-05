@@ -19,5 +19,6 @@
 #include "dinput8.hpp"
 #include "Config.hpp"
 #include "ExecutableType.hpp"
+#include "Utils.hpp"
 
 #endif //PCH_H

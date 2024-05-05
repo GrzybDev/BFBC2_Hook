@@ -48,6 +48,9 @@
     <ClInclude Include="ExecutableType.hpp">
       <Filter>Header Files\Hook\Enums</Filter>
     </ClInclude>
+    <ClInclude Include="Utils.hpp">
+      <Filter>Header Files\Hook</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="dllmain.cpp">
@@ -63,6 +66,9 @@
       <Filter>Source Files\Hook</Filter>
     </ClCompile>
     <ClCompile Include="Config.cpp">
+      <Filter>Source Files\Hook</Filter>
+    </ClCompile>
+    <ClCompile Include="Utils.cpp">
       <Filter>Source Files\Hook</Filter>
     </ClCompile>
   </ItemGroup>
