@@ -58,6 +58,7 @@
     <ClInclude Include="ExitCode.hpp" />
     <ClInclude Include="framework.hpp" />
     <ClInclude Include="Hook.hpp" />
+    <ClInclude Include="Packet.hpp" />
     <ClInclude Include="PatchDNS.hpp" />
     <ClInclude Include="PatchSSL.hpp" />
     <ClInclude Include="pch.hpp" />
@@ -71,6 +72,7 @@
     <ClCompile Include="dinput8.cpp" />
     <ClCompile Include="dllmain.cpp" />
     <ClCompile Include="Hook.cpp" />
+    <ClCompile Include="Packet.cpp" />
     <ClCompile Include="PatchDNS.cpp" />
     <ClCompile Include="PatchSSL.cpp" />
     <ClCompile Include="pch.cpp">

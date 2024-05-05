@@ -91,3 +91,34 @@ DWORD Utils::GetEntryPointOffset(const HANDLE hHandle)
 	const PIMAGE_OPTIONAL_HEADER pImageOptionalHeader = &ntHeader->OptionalHeader;
 	return pImageOptionalHeader->BaseOfCode;
 }
+
+UINT Utils::DecodeInt(const CHAR* data, const INT bytes)
+{
+	int num, i;
+
+	for (num = i = 0; i < bytes; i++)
+	{
+		const CHAR currentByte = data[i];
+		num |= (currentByte & 0xFF) << ((bytes - 1 - i) << 3); // Ensure sign extension for CHAR
+	}
+
+	return num;
+}
+
+std::string Utils::GetPacketData(const std::string& data)
+{
+	std::string finalStr;
+
+	const boost::char_separator<char> tokenSep("\n");
+
+	using Tokenizer = boost::tokenizer<boost::char_separator<char>>;
+	Tokenizer tokens(data, tokenSep);
+
+	BOOST_FOREACH(std::string const& token, tokens)
+	{
+		finalStr += token;
+		finalStr += ", ";
+	}
+
+	return finalStr.substr(0, finalStr.size() - 2);
+}

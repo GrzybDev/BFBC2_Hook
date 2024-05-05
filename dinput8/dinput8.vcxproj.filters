@@ -87,6 +87,9 @@
     <ClInclude Include="ProxyCert.hpp">
       <Filter>Header Files\Hook\Proxy</Filter>
     </ClInclude>
+    <ClInclude Include="Packet.hpp">
+      <Filter>Header Files\Hook\Proxy</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="dllmain.cpp">
@@ -118,6 +121,9 @@
     </ClCompile>
     <ClCompile Include="WebSocketClient.cpp">
       <Filter>Source Files\Hook\Proxy\Client</Filter>
+    </ClCompile>
+    <ClCompile Include="Packet.cpp">
+      <Filter>Source Files\Hook\Proxy</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

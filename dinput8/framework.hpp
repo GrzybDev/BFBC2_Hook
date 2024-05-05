@@ -29,7 +29,7 @@
 #include <boost/beast/ssl.hpp>
 #include <boost/beast/websocket.hpp>
 #include <boost/beast/websocket/ssl.hpp>
-
+#include <boost/array.hpp>
 
 // WinSock2 Library Headers
 #include "WinSock2.h"

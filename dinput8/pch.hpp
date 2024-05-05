@@ -14,6 +14,14 @@
 #define HTTP_PORT 80
 #define HTTPS_PORT 443
 
+#define PACKET_MAX_LENGTH 8192
+
+#define HEADER_VALUE_LENGTH 4
+#define CATEGORY_OFFSET 0
+#define TYPE_OFFSET   CATEGORY_OFFSET + HEADER_VALUE_LENGTH
+#define LENGTH_OFFSET TYPE_OFFSET + HEADER_VALUE_LENGTH
+#define HEADER_LENGTH LENGTH_OFFSET + HEADER_VALUE_LENGTH
+
 // add headers that you want to pre-compile here
 #include "framework.hpp"
 #include "dinput8.hpp"
@@ -24,5 +32,6 @@
 #include "PatchDNS.hpp"
 #include "PatchSSL.hpp"
 #include "ProxyCert.hpp"
+#include "Packet.hpp"
 
 #endif //PCH_H

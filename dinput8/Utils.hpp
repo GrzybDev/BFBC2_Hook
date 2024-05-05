@@ -9,4 +9,7 @@ public:
 	static DWORD FindPattern(DWORD start, DWORD size, const BYTE* pattern, const CHAR* mask);
 	static DWORD GetModuleSize(HANDLE handle);
 	static DWORD GetEntryPointOffset(HANDLE hHandle);
+
+	static UINT DecodeInt(const CHAR* data, INT bytes);
+	static std::string GetPacketData(const std::string& data);
 };
