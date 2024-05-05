@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <Filter Include="Source Files">
@@ -19,6 +19,12 @@
     <Filter Include="Source Files\API">
       <UniqueIdentifier>{d54b7894-3a34-4712-b280-42b3ed5ae0cd}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Hook">
+      <UniqueIdentifier>{1627df08-4da8-4fe8-a9f8-fa5e2f6f83b8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Hook\Enums">
+      <UniqueIdentifier>{5c471121-4a92-4048-9bc3-b59afd3180b0}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.hpp">
@@ -29,6 +35,9 @@
     </ClInclude>
     <ClInclude Include="dinput8.hpp">
       <Filter>Header Files\API</Filter>
+    </ClInclude>
+    <ClInclude Include="ExecutableType.hpp">
+      <Filter>Header Files\Hook\Enums</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

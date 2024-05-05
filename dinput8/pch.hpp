@@ -10,5 +10,6 @@
 // add headers that you want to pre-compile here
 #include "framework.hpp"
 #include "dinput8.hpp"
+#include "ExecutableType.hpp"
 
 #endif //PCH_H

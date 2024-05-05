@@ -51,6 +51,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="dinput8.hpp" />
+    <ClInclude Include="ExecutableType.hpp" />
     <ClInclude Include="framework.hpp" />
     <ClInclude Include="pch.hpp" />
   </ItemGroup>
