@@ -20,5 +20,6 @@
 #include "Config.hpp"
 #include "ExecutableType.hpp"
 #include "Utils.hpp"
+#include "ExitCode.hpp"
 
 #endif //PCH_H

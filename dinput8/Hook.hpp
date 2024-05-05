@@ -21,4 +21,5 @@ private:
 	Config* config_ = &Config::GetInstance();
 
 	VOID InitLogging() const;
+	VOID VerifyGameVersion() const;
 };

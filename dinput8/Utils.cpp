@@ -28,3 +28,24 @@ VOID Utils::PrintChar(const CHAR c, const UINT count)
 	for (UINT i = 0; i < count; i++)
 		cout << c;
 }
+
+DWORD Utils::FindPattern(const DWORD start, const DWORD size, const BYTE* pattern, const CHAR* mask)
+{
+	UINT i = NULL;
+	const INT iLen = strlen(mask) - 1;
+
+	for (DWORD dwRet = start; dwRet < start + size; dwRet++)
+	{
+		if (*reinterpret_cast<BYTE*>(dwRet) == pattern[i] || mask[i] == '?')
+		{
+			if (mask[i + 1] == '\0')
+				return (dwRet - iLen);
+
+			i++;
+		}
+		else
+			i = NULL;
+	}
+
+	return NULL;
+}

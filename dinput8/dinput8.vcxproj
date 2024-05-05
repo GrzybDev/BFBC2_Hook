@@ -55,6 +55,7 @@
     <ClInclude Include="Config.hpp" />
     <ClInclude Include="dinput8.hpp" />
     <ClInclude Include="ExecutableType.hpp" />
+    <ClInclude Include="ExitCode.hpp" />
     <ClInclude Include="framework.hpp" />
     <ClInclude Include="Hook.hpp" />
     <ClInclude Include="pch.hpp" />

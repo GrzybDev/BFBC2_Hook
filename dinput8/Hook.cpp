@@ -4,6 +4,13 @@
 Hook::Hook()
 {
 	InitLogging();
+
+	BOOST_LOG_FUNCTION()
+	BOOST_LOG_TRIVIAL(info) << "Initializing...";
+
+	VerifyGameVersion();
+
+	BOOST_LOG_TRIVIAL(info) << "Initialized successfully!";
 }
 
 VOID Hook::InitLogging() const
@@ -81,4 +88,63 @@ VOID Hook::InitLogging() const
 		fileSink->set_filter(logging::trivial::severity >= fileLogLevel);
 		fileSink->set_formatter(logFormat);
 	}
+}
+
+VOID Hook::VerifyGameVersion() const
+{
+	BOOST_LOG_NAMED_SCOPE("GameVersion")
+
+	std::string exeType;
+
+	if (config_->hook->forceClientType.empty())
+	{
+		// "ROMEPC795745" - Client R11
+		DWORD mClientVersionAddr = Utils::FindPattern(0x1400000, 0x600000, (BYTE*)config_->hook->clientVersion.c_str(),
+		                                              "xxxxxxxxxxxxxx");
+
+		// "ROMEPC851434" - Server R34
+		DWORD mServerVersionAddr = Utils::FindPattern(0x1600000, 0x600000, (BYTE*)config_->hook->serverVersion.c_str(),
+		                                              "xxxxxxxxxxxxxx");
+
+		if (config_->hook->verifyGameVersion && (mClientVersionAddr == NULL && mServerVersionAddr == NULL))
+		{
+			MessageBoxA(nullptr, "Unknown client/server detected!", "Failed to initialize hook!", MB_OK | MB_ICONERROR);
+			ExitProcess(UNKNOWN_GAME_VERSION);
+		}
+
+		if (mClientVersionAddr != NULL)
+		{
+			exeType = "Client";
+			config_->executableType = CLIENT;
+		}
+		else if (mServerVersionAddr != NULL)
+		{
+			exeType = "Server";
+			config_->executableType = SERVER;
+		}
+	}
+	else
+	{
+		const std::string clientType = boost::algorithm::to_upper_copy(config_->hook->forceClientType);
+
+		if (clientType == "CLIENT")
+		{
+			exeType = "Client";
+			config_->executableType = CLIENT;
+		}
+		else if (clientType == "SERVER")
+		{
+			exeType = "Server";
+			config_->executableType = SERVER;
+		}
+		else
+		{
+			MessageBoxA(nullptr, "Invalid client type specified!", "Failed to initialize hook!", MB_OK | MB_ICONERROR);
+			ExitProcess(UNKNOWN_GAME_VERSION);
+		}
+
+		BOOST_LOG_TRIVIAL(warning) << "Forcing client type: " << exeType;
+	}
+
+	BOOST_LOG_TRIVIAL(info) << "Detected executable type: " << exeType;
 }
