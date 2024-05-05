@@ -14,11 +14,17 @@ public:
 
 	void Connect(const std::string& host, const USHORT& port, const std::string& target);
 
+	void SetPlasmaCallback(const std::function<void(boost::array<char, PACKET_MAX_LENGTH>, size_t)>& callback);
+	void Write(boost::array<char, PACKET_MAX_LENGTH> data, size_t size);
+	void Disconnect();
+
 private:
 	tcp::resolver resolver_;
 	websocket::stream<tcp::socket> ws_;
 	websocket::stream<beast::ssl_stream<tcp::socket>> wss_;
 	beast::flat_buffer buffer_;
+
+	std::function<void(boost::array<char, PACKET_MAX_LENGTH>, size_t)> plasmaWrite_;
 
 	bool isSecure_;
 

@@ -53,6 +53,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Config.hpp" />
+    <ClInclude Include="ConnectionPlasma.hpp" />
     <ClInclude Include="dinput8.hpp" />
     <ClInclude Include="ExecutableType.hpp" />
     <ClInclude Include="ExitCode.hpp" />
@@ -64,11 +65,13 @@
     <ClInclude Include="pch.hpp" />
     <ClInclude Include="Proxy.hpp" />
     <ClInclude Include="ProxyCert.hpp" />
+    <ClInclude Include="ProxyTCP.hpp" />
     <ClInclude Include="Utils.hpp" />
     <ClInclude Include="WebSocketClient.hpp" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Config.cpp" />
+    <ClCompile Include="ConnectionPlasma.cpp" />
     <ClCompile Include="dinput8.cpp" />
     <ClCompile Include="dllmain.cpp" />
     <ClCompile Include="Hook.cpp" />
@@ -79,6 +82,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="Proxy.cpp" />
+    <ClCompile Include="ProxyTCP.cpp" />
     <ClCompile Include="Utils.cpp" />
     <ClCompile Include="WebSocketClient.cpp" />
   </ItemGroup>

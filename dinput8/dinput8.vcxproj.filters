@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <Filter Include="Source Files">
@@ -46,6 +46,18 @@
     <Filter Include="Source Files\Hook\Proxy\Client">
       <UniqueIdentifier>{931f1dc1-854f-4114-9fe4-6d29086244f2}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Hook\Proxy\Server">
+      <UniqueIdentifier>{dcc6436a-1866-4dab-8f92-e5b154af431b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Hook\Proxy\Server">
+      <UniqueIdentifier>{63cfd1d8-07e2-495e-8164-52a688643c20}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Hook\Proxy\Server\Connections">
+      <UniqueIdentifier>{4047cc1b-c9c5-4e82-983a-732e486bed0d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Hook\Proxy\Server\Connections">
+      <UniqueIdentifier>{61707c47-3017-4839-a3f8-a2bf0255ad01}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.hpp">
@@ -87,6 +99,12 @@
     <ClInclude Include="ProxyCert.hpp">
       <Filter>Header Files\Hook\Proxy</Filter>
     </ClInclude>
+    <ClInclude Include="ProxyTCP.hpp">
+      <Filter>Header Files\Hook\Proxy\Server</Filter>
+    </ClInclude>
+    <ClInclude Include="ConnectionPlasma.hpp">
+      <Filter>Header Files\Hook\Proxy\Server\Connections</Filter>
+    </ClInclude>
     <ClInclude Include="Packet.hpp">
       <Filter>Header Files\Hook\Proxy</Filter>
     </ClInclude>
@@ -121,6 +139,12 @@
     </ClCompile>
     <ClCompile Include="WebSocketClient.cpp">
       <Filter>Source Files\Hook\Proxy\Client</Filter>
+    </ClCompile>
+    <ClCompile Include="ProxyTCP.cpp">
+      <Filter>Source Files\Hook\Proxy\Server</Filter>
+    </ClCompile>
+    <ClCompile Include="ConnectionPlasma.cpp">
+      <Filter>Source Files\Hook\Proxy\Server\Connections</Filter>
     </ClCompile>
     <ClCompile Include="Packet.cpp">
       <Filter>Source Files\Hook\Proxy</Filter>

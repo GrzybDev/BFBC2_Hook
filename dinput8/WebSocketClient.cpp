@@ -7,6 +7,12 @@ WebSocketClient::WebSocketClient(net::io_context& ioc, ssl::context& ctx, const 
 	isSecure_ = isSecure;
 }
 
+void WebSocketClient::SetPlasmaCallback(
+	const std::function<void(boost::array<char, PACKET_MAX_LENGTH>, size_t)>& callback)
+{
+	plasmaWrite_ = callback;
+}
+
 void WebSocketClient::Connect(const std::string& host, const USHORT& port, const std::string& target)
 {
 	std::string fullAddress = (isSecure_ ? "wss://" : "ws://") + host + ":" + std::to_string(port) + target;
@@ -101,13 +107,15 @@ void WebSocketClient::Connect(const std::string& host, const USHORT& port, const
 
 void WebSocketClient::OnRead(const beast::error_code& ec, std::size_t bytesTransferred)
 {
-	boost::ignore_unused(bytesTransferred);
-
 	if (ec)
 	{
 		BOOST_LOG_TRIVIAL(error) << "Failed to read: " << ec.message();
 		throw std::runtime_error("Failed to read: " + ec.message());
 	}
+
+	boost::array<char, PACKET_MAX_LENGTH> readBuf;
+	std::memcpy(readBuf.data(), buffer_.data().data(), bytesTransferred);
+	plasmaWrite_(readBuf, bytesTransferred);
 
 	if (isSecure_)
 	{
@@ -127,4 +135,20 @@ void WebSocketClient::OnRead(const beast::error_code& ec, std::size_t bytesTrans
 				&WebSocketClient::OnRead,
 				shared_from_this()));
 	}
+}
+
+void WebSocketClient::Write(boost::array<char, PACKET_MAX_LENGTH> data, const size_t size)
+{
+	if (isSecure_)
+		wss_.write(boost::asio::buffer(data, size));
+	else
+		ws_.write(boost::asio::buffer(data, size));
+}
+
+void WebSocketClient::Disconnect()
+{
+	if (isSecure_)
+		wss_.close(websocket::close_code::normal);
+	else
+		ws_.close(websocket::close_code::normal);
 }
