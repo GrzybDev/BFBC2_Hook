@@ -1,19 +1,34 @@
 // dllmain.cpp : Defines the entry point for the DLL application.
 #include "pch.hpp"
 
-BOOL APIENTRY DllMain( HMODULE hModule,
-                       DWORD  ul_reason_for_call,
-                       LPVOID lpReserved
-                     )
+VOID LoadOriginalLibrary(const std::string& libraryName)
 {
-    switch (ul_reason_for_call)
-    {
-    case DLL_PROCESS_ATTACH:
-    case DLL_THREAD_ATTACH:
-    case DLL_THREAD_DETACH:
-    case DLL_PROCESS_DETACH:
-        break;
-    }
-    return TRUE;
+	// Get the system directory
+	char libraryPath[MAX_PATH];
+	GetSystemDirectoryA(libraryPath, MAX_PATH);
+
+	// Append the library name to the path
+	strcat_s(libraryPath, ("\\" + libraryName).c_str());
+
+	// Load the original library
+	original_library = LoadLibraryA(libraryPath);
+
+	if (original_library >= reinterpret_cast<HMODULE>(HINSTANCE_ERROR))
+	{
+		original_function = reinterpret_cast<DirectInput8Create_t>(GetProcAddress(
+			original_library, "DirectInput8Create"));
+	}
 }
 
+BOOL APIENTRY DllMain(HMODULE /*hModule*/,
+                      const DWORD ulReasonForCall,
+                      LPVOID /*lpReserved*/
+)
+{
+	if (ulReasonForCall == DLL_PROCESS_ATTACH)
+	{
+		LoadOriginalLibrary("dinput8.dll");
+	}
+
+	return TRUE;
+}
