@@ -1,0 +1,91 @@
+name: Build BFBC2 Hook
+
+on:
+  push:
+    branches:
+      - main
+  release:
+    types: [published]
+
+  workflow_dispatch:
+
+jobs:
+  build:
+    name: Build
+    permissions: write-all
+    
+    runs-on: windows-latest
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: 'recursive'
+
+      - name: Set up Visual Studio shell
+        uses: egor-tensin/vs-shell@v2
+        with:
+          arch: x86
+
+      - name: Setup NASM
+        uses: ilammy/setup-nasm@v1
+
+      - name: Build Boost
+        working-directory: ./libs/boost
+        shell: cmd
+        run: bootstrap.bat && b2 install address-model=32 --prefix=../../dependencies/boost --with-date_time --with-log --with-regex --with-system release
+      
+      - name: Build Detours
+        working-directory: ./libs/detours
+        run: |
+          mkdir ..\..\dependencies\detours
+          mkdir ..\..\dependencies\detours\include
+          mkdir ..\..\dependencies\detours\lib
+          nmake
+          xcopy include\* ..\..\dependencies\detours\include\
+          xcopy lib.X86\* ..\..\dependencies\detours\lib\
+
+      - name: Build OpenSSL
+        working-directory: ./libs/openssl
+        shell: cmd
+        run: |
+          mkdir ..\..\dependencies\openssl
+          pushd ..\..\dependencies\openssl
+          set BUILD_PATH=%CD%
+          popd
+          perl Configure VC-WIN32 --prefix=%BUILD_PATH% enable-ssl2 enable-ssl3 && ms\do_nasm && nmake -f ms\ntdll.mak && nmake -f ms\ntdll.mak test && nmake -f ms\ntdll.mak install
+      
+      - name: Initialize CodeQL
+        uses: github/codeql-action/init@v3
+        if: ${{ github.event_name != 'release' }}
+        with:
+          queries: security-extended,security-and-quality
+          languages: "cpp"
+          source-root: dinput8
+      
+      - name: Autobuild hook
+        if: ${{ github.event_name != 'release' }}
+        uses: github/codeql-action/autobuild@v3
+
+      - name: Build hook
+        if: ${{ github.event_name == 'release' }}
+        run: msbuild /p:Platform="x86" /p:Configuration="Release"
+
+      - name: Perform CodeQL Analysis
+        if: ${{ github.event_name != 'release' }}
+        uses: github/codeql-action/analyze@v3
+      
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: ReleaseBuild
+          path: Release
+      
+      - name: Compress Release
+        if: ${{ github.event_name == 'release' }}
+        run: Compress-Archive -Path .\Release\*.dll -DestinationPath BFBC2_Hook_Release.zip
+
+      - name: Upload Release
+        if: ${{ github.event_name == 'release' }}
+        uses: softprops/action-gh-release@v2
+        with:
+          files: BFBC2_Hook_Release.zip
