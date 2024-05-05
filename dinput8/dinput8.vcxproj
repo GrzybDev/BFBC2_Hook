@@ -62,6 +62,7 @@
     <ClInclude Include="PatchSSL.hpp" />
     <ClInclude Include="pch.hpp" />
     <ClInclude Include="Proxy.hpp" />
+    <ClInclude Include="ProxyCert.hpp" />
     <ClInclude Include="Utils.hpp" />
     <ClInclude Include="WebSocketClient.hpp" />
   </ItemGroup>

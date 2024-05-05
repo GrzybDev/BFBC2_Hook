@@ -23,5 +23,6 @@
 #include "ExitCode.hpp"
 #include "PatchDNS.hpp"
 #include "PatchSSL.hpp"
+#include "ProxyCert.hpp"
 
 #endif //PCH_H
