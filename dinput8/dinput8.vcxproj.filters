@@ -36,6 +36,9 @@
     <ClInclude Include="dinput8.hpp">
       <Filter>Header Files\API</Filter>
     </ClInclude>
+    <ClInclude Include="Config.hpp">
+      <Filter>Header Files\Hook</Filter>
+    </ClInclude>
     <ClInclude Include="ExecutableType.hpp">
       <Filter>Header Files\Hook\Enums</Filter>
     </ClInclude>
@@ -49,6 +52,9 @@
     </ClCompile>
     <ClCompile Include="dinput8.cpp">
       <Filter>Source Files\API</Filter>
+    </ClCompile>
+    <ClCompile Include="Config.cpp">
+      <Filter>Source Files\Hook</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
