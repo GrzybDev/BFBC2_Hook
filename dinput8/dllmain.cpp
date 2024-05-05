@@ -1,6 +1,8 @@
 // dllmain.cpp : Defines the entry point for the DLL application.
 #include "pch.hpp"
 
+#include "Hook.hpp"
+
 VOID LoadOriginalLibrary(const std::string& libraryName)
 {
 	// Get the system directory
@@ -33,6 +35,13 @@ VOID UnprotectProcessMemory()
 	VirtualProtect(hModule, size, PAGE_EXECUTE_READWRITE, &oldProtect);
 }
 
+DWORD WINAPI InitHook(LPVOID /*lpParam*/)
+{
+	Hook::GetInstance();
+
+	return NULL;
+}
+
 BOOL APIENTRY DllMain(HMODULE /*hModule*/,
                       const DWORD ulReasonForCall,
                       LPVOID /*lpReserved*/
@@ -42,6 +51,8 @@ BOOL APIENTRY DllMain(HMODULE /*hModule*/,
 	{
 		LoadOriginalLibrary("dinput8.dll");
 		UnprotectProcessMemory();
+
+		CreateThread(nullptr, NULL, InitHook, nullptr, NULL, nullptr);
 	}
 
 	return TRUE;

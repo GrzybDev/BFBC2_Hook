@@ -56,12 +56,14 @@
     <ClInclude Include="dinput8.hpp" />
     <ClInclude Include="ExecutableType.hpp" />
     <ClInclude Include="framework.hpp" />
+    <ClInclude Include="Hook.hpp" />
     <ClInclude Include="pch.hpp" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Config.cpp" />
     <ClCompile Include="dinput8.cpp" />
     <ClCompile Include="dllmain.cpp" />
+    <ClCompile Include="Hook.cpp" />
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
     </ClCompile>

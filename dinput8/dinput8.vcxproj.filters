@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <Filter Include="Source Files">
@@ -22,6 +22,9 @@
     <Filter Include="Header Files\Hook">
       <UniqueIdentifier>{1627df08-4da8-4fe8-a9f8-fa5e2f6f83b8}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Hook">
+      <UniqueIdentifier>{8971882a-afd9-4a4f-a32d-4871ccbd49ed}</UniqueIdentifier>
+    </Filter>
     <Filter Include="Header Files\Hook\Enums">
       <UniqueIdentifier>{5c471121-4a92-4048-9bc3-b59afd3180b0}</UniqueIdentifier>
     </Filter>
@@ -35,6 +38,9 @@
     </ClInclude>
     <ClInclude Include="dinput8.hpp">
       <Filter>Header Files\API</Filter>
+    </ClInclude>
+    <ClInclude Include="Hook.hpp">
+      <Filter>Header Files\Hook</Filter>
     </ClInclude>
     <ClInclude Include="Config.hpp">
       <Filter>Header Files\Hook</Filter>
@@ -52,6 +58,9 @@
     </ClCompile>
     <ClCompile Include="dinput8.cpp">
       <Filter>Source Files\API</Filter>
+    </ClCompile>
+    <ClCompile Include="Hook.cpp">
+      <Filter>Source Files\Hook</Filter>
     </ClCompile>
     <ClCompile Include="Config.cpp">
       <Filter>Source Files\Hook</Filter>
