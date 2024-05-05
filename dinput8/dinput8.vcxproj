@@ -61,6 +61,7 @@
     <ClInclude Include="PatchDNS.hpp" />
     <ClInclude Include="PatchSSL.hpp" />
     <ClInclude Include="pch.hpp" />
+    <ClInclude Include="Proxy.hpp" />
     <ClInclude Include="Utils.hpp" />
     <ClInclude Include="WebSocketClient.hpp" />
   </ItemGroup>
@@ -74,6 +75,7 @@
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="Proxy.cpp" />
     <ClCompile Include="Utils.cpp" />
     <ClCompile Include="WebSocketClient.cpp" />
   </ItemGroup>

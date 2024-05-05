@@ -1,6 +1,15 @@
 #include "pch.hpp"
 #include "Hook.hpp"
 
+#include "Proxy.hpp"
+
+DWORD WINAPI InitProxy(LPVOID /*lpParam*/)
+{
+	Proxy::GetInstance();
+
+	return NULL;
+}
+
 Hook::Hook()
 {
 	InitLogging();
@@ -10,6 +19,9 @@ Hook::Hook()
 
 	VerifyGameVersion();
 	PatchGame();
+
+	if (config_->hook->proxyEnable)
+		CreateThread(nullptr, NULL, InitProxy, nullptr, NULL, nullptr);
 
 	BOOST_LOG_TRIVIAL(info) << "Initialized successfully!";
 }
