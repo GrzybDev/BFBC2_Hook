@@ -21,6 +21,15 @@
 #include <boost/log/utility/setup/file.hpp>
 #include <boost/log/expressions.hpp>
 #include <boost/log/support/date_time.hpp>
+#include <boost/asio/connect.hpp>
+#include <boost/asio/io_service.hpp>
+#include <boost/asio/ip/tcp.hpp>
+#include <boost/asio/ssl/stream.hpp>
+#include <boost/beast/core.hpp>
+#include <boost/beast/ssl.hpp>
+#include <boost/beast/websocket.hpp>
+#include <boost/beast/websocket/ssl.hpp>
+
 
 // WinSock2 Library Headers
 #include "WinSock2.h"
@@ -29,3 +38,7 @@
 // Detours Library Headers
 #include "detours.h"
 #pragma comment(lib, "detours.lib")
+
+// OpenSSL Library
+#pragma comment(lib, "ssleay32.lib")
+#pragma comment(lib, "libeay32.lib")

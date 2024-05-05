@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <Filter Include="Source Files">
@@ -34,6 +34,18 @@
     <Filter Include="Source Files\Hook\Patches">
       <UniqueIdentifier>{c7359924-7ae0-45ff-af69-720760211324}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Hook\Proxy">
+      <UniqueIdentifier>{63a44f72-5291-4bfd-b838-0a976c9bfb3e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Hook\Proxy">
+      <UniqueIdentifier>{1cf05798-4502-4e29-a836-2c199cc2598f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Hook\Proxy\Client">
+      <UniqueIdentifier>{f443e6cd-525d-42ba-96fe-ecf6672e3456}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Hook\Proxy\Client">
+      <UniqueIdentifier>{931f1dc1-854f-4114-9fe4-6d29086244f2}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.hpp">
@@ -66,6 +78,9 @@
     <ClInclude Include="PatchSSL.hpp">
       <Filter>Header Files\Hook\Patches</Filter>
     </ClInclude>
+    <ClInclude Include="WebSocketClient.hpp">
+      <Filter>Header Files\Hook\Proxy\Client</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="dllmain.cpp">
@@ -91,6 +106,12 @@
     </ClCompile>
     <ClCompile Include="PatchSSL.cpp">
       <Filter>Source Files\Hook\Patches</Filter>
+    </ClCompile>
+    <ClCompile Include="Proxy.cpp">
+      <Filter>Source Files\Hook\Proxy</Filter>
+    </ClCompile>
+    <ClCompile Include="WebSocketClient.cpp">
+      <Filter>Source Files\Hook\Proxy\Client</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
