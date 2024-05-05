@@ -39,7 +39,7 @@
       <PreprocessorDefinitions>WIN32;NDEBUG;DINPUT8_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeader>Use</PrecompiledHeader>
-      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderFile>pch.hpp</PrecompiledHeaderFile>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -50,8 +50,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="framework.h" />
-    <ClInclude Include="pch.h" />
+    <ClInclude Include="framework.hpp" />
+    <ClInclude Include="pch.hpp" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="dllmain.cpp" />
