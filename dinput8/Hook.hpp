@@ -22,4 +22,5 @@ private:
 
 	VOID InitLogging() const;
 	VOID VerifyGameVersion() const;
+	VOID PatchGame() const;
 };

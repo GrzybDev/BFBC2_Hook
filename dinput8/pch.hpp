@@ -21,5 +21,7 @@
 #include "ExecutableType.hpp"
 #include "Utils.hpp"
 #include "ExitCode.hpp"
+#include "PatchDNS.hpp"
+#include "PatchSSL.hpp"
 
 #endif //PCH_H

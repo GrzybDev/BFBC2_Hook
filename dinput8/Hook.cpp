@@ -9,6 +9,7 @@ Hook::Hook()
 	BOOST_LOG_TRIVIAL(info) << "Initializing...";
 
 	VerifyGameVersion();
+	PatchGame();
 
 	BOOST_LOG_TRIVIAL(info) << "Initialized successfully!";
 }
@@ -147,4 +148,28 @@ VOID Hook::VerifyGameVersion() const
 	}
 
 	BOOST_LOG_TRIVIAL(info) << "Detected executable type: " << exeType;
+}
+
+VOID Hook::PatchGame() const
+{
+	if (config_->hook->patchDNS)
+	{
+		if (!PatchDNS::Patch())
+		{
+			MessageBoxA(nullptr, "Failed to patch DNS resolution!", "Failed to initialize hook!", MB_OK | MB_ICONERROR);
+			ExitProcess(PATCH_FAILED);
+		}
+	}
+
+	if (config_->hook->patchSSL)
+	{
+		const PatchSSL* sslPatch = &PatchSSL::GetInstance();
+
+		if (!sslPatch->Patch())
+		{
+			MessageBoxA(nullptr, "Failed to patch SSL certificate verification!", "Failed to initialize hook!",
+			            MB_OK | MB_ICONERROR);
+			ExitProcess(PATCH_FAILED);
+		}
+	}
 }

@@ -36,11 +36,11 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>WIN32;NDEBUG;DINPUT8_EXPORTS;_WINDOWS;_USRDLL;WIN32_LEAN_AND_MEAN;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;DINPUT8_EXPORTS;_WINDOWS;_USRDLL;WIN32_LEAN_AND_MEAN;_WINSOCK_DEPRECATED_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.hpp</PrecompiledHeaderFile>
-      <AdditionalIncludeDirectories>$(SolutionDir)dependencies\boost\include\boost-1_85;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)dependencies\boost\include\boost-1_85;$(SolutionDir)dependencies\detours\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -48,7 +48,7 @@
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableUAC>false</EnableUAC>
-      <AdditionalLibraryDirectories>$(SolutionDir)dependencies\boost\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)dependencies\boost\lib;$(SolutionDir)dependencies\detours\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
@@ -58,6 +58,8 @@
     <ClInclude Include="ExitCode.hpp" />
     <ClInclude Include="framework.hpp" />
     <ClInclude Include="Hook.hpp" />
+    <ClInclude Include="PatchDNS.hpp" />
+    <ClInclude Include="PatchSSL.hpp" />
     <ClInclude Include="pch.hpp" />
     <ClInclude Include="Utils.hpp" />
   </ItemGroup>
@@ -66,6 +68,8 @@
     <ClCompile Include="dinput8.cpp" />
     <ClCompile Include="dllmain.cpp" />
     <ClCompile Include="Hook.cpp" />
+    <ClCompile Include="PatchDNS.cpp" />
+    <ClCompile Include="PatchSSL.cpp" />
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
     </ClCompile>

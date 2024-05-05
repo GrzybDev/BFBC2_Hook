@@ -49,3 +49,45 @@ DWORD Utils::FindPattern(const DWORD start, const DWORD size, const BYTE* patter
 
 	return NULL;
 }
+
+DWORD Utils::GetModuleSize(const HANDLE handle)
+{
+	auto hModule = static_cast<HMODULE>(handle);
+
+	if (!hModule)
+		return NULL;
+
+	const auto dosHeader = reinterpret_cast<PIMAGE_DOS_HEADER>(hModule);
+
+	if (dosHeader->e_magic != IMAGE_DOS_SIGNATURE)
+		return NULL;
+
+	const auto ntHeader = reinterpret_cast<PIMAGE_NT_HEADERS>(reinterpret_cast<DWORD>(hModule) + dosHeader->e_lfanew);
+
+	if (ntHeader->Signature != IMAGE_NT_SIGNATURE)
+		return NULL;
+
+	const PIMAGE_OPTIONAL_HEADER pImageOptionalHeader = &ntHeader->OptionalHeader;
+	return pImageOptionalHeader->SizeOfImage;
+}
+
+DWORD Utils::GetEntryPointOffset(const HANDLE hHandle)
+{
+	auto hModule = static_cast<HMODULE>(hHandle);
+
+	if (!hModule)
+		return NULL;
+
+	const auto dosHeader = reinterpret_cast<PIMAGE_DOS_HEADER>(hModule);
+
+	if (dosHeader->e_magic != IMAGE_DOS_SIGNATURE)
+		return NULL;
+
+	const auto ntHeader = reinterpret_cast<PIMAGE_NT_HEADERS>(reinterpret_cast<DWORD>(hModule) + dosHeader->e_lfanew);
+
+	if (ntHeader->Signature != IMAGE_NT_SIGNATURE)
+		return NULL;
+
+	const PIMAGE_OPTIONAL_HEADER pImageOptionalHeader = &ntHeader->OptionalHeader;
+	return pImageOptionalHeader->BaseOfCode;
+}

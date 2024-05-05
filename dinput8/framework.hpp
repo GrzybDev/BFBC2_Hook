@@ -21,3 +21,11 @@
 #include <boost/log/utility/setup/file.hpp>
 #include <boost/log/expressions.hpp>
 #include <boost/log/support/date_time.hpp>
+
+// WinSock2 Library Headers
+#include "WinSock2.h"
+#pragma comment(lib, "ws2_32.lib")
+
+// Detours Library Headers
+#include "detours.h"
+#pragma comment(lib, "detours.lib")

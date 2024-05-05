@@ -28,6 +28,12 @@
     <Filter Include="Header Files\Hook\Enums">
       <UniqueIdentifier>{5c471121-4a92-4048-9bc3-b59afd3180b0}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Hook\Patches">
+      <UniqueIdentifier>{ef21502b-de2d-44dc-bff1-959858844582}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Hook\Patches">
+      <UniqueIdentifier>{c7359924-7ae0-45ff-af69-720760211324}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.hpp">
@@ -54,6 +60,12 @@
     <ClInclude Include="ExitCode.hpp">
       <Filter>Header Files\Hook\Enums</Filter>
     </ClInclude>
+    <ClInclude Include="PatchDNS.hpp">
+      <Filter>Header Files\Hook\Patches</Filter>
+    </ClInclude>
+    <ClInclude Include="PatchSSL.hpp">
+      <Filter>Header Files\Hook\Patches</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="dllmain.cpp">
@@ -73,6 +85,12 @@
     </ClCompile>
     <ClCompile Include="Utils.cpp">
       <Filter>Source Files\Hook</Filter>
+    </ClCompile>
+    <ClCompile Include="PatchDNS.cpp">
+      <Filter>Source Files\Hook\Patches</Filter>
+    </ClCompile>
+    <ClCompile Include="PatchSSL.cpp">
+      <Filter>Source Files\Hook\Patches</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
