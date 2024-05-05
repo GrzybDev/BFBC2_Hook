@@ -4,3 +4,6 @@
 [submodule "libs/detours"]
 	path = libs/detours
 	url = https://github.com/microsoft/Detours.git
+[submodule "libs/openssl"]
+	path = libs/openssl
+	url = https://github.com/openssl/openssl.git
