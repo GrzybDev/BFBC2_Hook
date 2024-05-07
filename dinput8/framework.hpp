@@ -1,3 +1,4 @@
+// framework.hpp : Includes the necessary headers and libraries for the application.
 #pragma once
 
 // Windows Header Files

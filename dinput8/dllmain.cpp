@@ -15,6 +15,7 @@ VOID LoadOriginalLibrary(const std::string& libraryName)
 	// Load the original library
 	original_library = LoadLibraryA(libraryPath);
 
+	// If the library is loaded successfully, get the address of the function DirectInput8Create
 	if (original_library >= reinterpret_cast<HMODULE>(HINSTANCE_ERROR))
 	{
 		original_function = reinterpret_cast<DirectInput8Create_t>(GetProcAddress(
@@ -24,8 +25,10 @@ VOID LoadOriginalLibrary(const std::string& libraryName)
 
 VOID UnprotectProcessMemory()
 {
+	// Get the handle to the current module
 	auto hModule = GetModuleHandle(nullptr);
 
+	// Get the DOS and NT headers of the PE image
 	const auto dosHeader = reinterpret_cast<PIMAGE_DOS_HEADER>(hModule);
 	const auto ntHeaders = reinterpret_cast<PIMAGE_NT_HEADERS>(reinterpret_cast<DWORD>(hModule) + dosHeader->e_lfanew);
 
@@ -47,6 +50,7 @@ BOOL APIENTRY DllMain(HMODULE /*hModule*/,
                       LPVOID /*lpReserved*/
 )
 {
+	// If the DLL is being loaded, load the original library, unprotect the process memory, and create a new thread to initialize the hook
 	if (ulReasonForCall == DLL_PROCESS_ATTACH)
 	{
 		LoadOriginalLibrary("dinput8.dll");

@@ -1,3 +1,4 @@
+// WebSocketClient.cpp : Defines the WebSocketClient class, which handles the WebSocket client operations.
 #include "pch.hpp"
 #include "WebSocketClient.hpp"
 

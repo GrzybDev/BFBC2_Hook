@@ -1,4 +1,6 @@
+// ConnectionPlasma.hpp : Defines the ConnectionPlasma class, which handles the connection to the game.
 #pragma once
+
 #include "pch.hpp"
 
 #include "WebSocketClient.hpp"

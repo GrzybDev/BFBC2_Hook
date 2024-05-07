@@ -1,3 +1,4 @@
+// ProxyTCP.cpp : Defines the ProxyTCP class, which handles the TCP proxy operations.
 #include "pch.hpp"
 #include "ProxyTCP.hpp"
 
@@ -17,6 +18,7 @@ ProxyTCP::ProxyTCP(io_service& ioService, const USHORT port, const bool secure,
 	secure_ = secure;
 	ws_ = ws;
 
+	// If secure, set up SSL context
 	if (secure)
 	{
 		SSL_CTX_set_cipher_list(context_.native_handle(), "ALL:!DH");
@@ -47,6 +49,7 @@ void ProxyTCP::HandleAcceptPlasma(const system::error_code& error)
 {
 	BOOST_LOG_NAMED_SCOPE("Plasma")
 
+	// If the acceptor is not open, log an error and return
 	if (!acceptor_.is_open())
 	{
 		BOOST_LOG_TRIVIAL(error) << "TCP Socket, port " << port_ << " - acceptor is not open";
@@ -57,8 +60,7 @@ void ProxyTCP::HandleAcceptPlasma(const system::error_code& error)
 		newPlasmaConnection_->Start();
 	else
 		BOOST_LOG_TRIVIAL(error) << "TCP Socket, port " << port_ << " - error: " << error.message() << ", error code: "
- <<
-		error.value();
+			<< error.value();
 
 	StartAccept();
 }

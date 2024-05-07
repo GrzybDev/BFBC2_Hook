@@ -1,3 +1,4 @@
+// ConnectionPlasma.cpp : Defines the methods for the ConnectionPlasma class, which handles the connection to the game.
 #include "pch.hpp"
 #include "ConnectionPlasma.hpp"
 

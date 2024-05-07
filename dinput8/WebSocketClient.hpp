@@ -1,3 +1,4 @@
+// WebSocketClient.hpp : Defines the WebSocketClient class, which handles the WebSocket client operations.
 #pragma once
 
 namespace beast = boost::beast;

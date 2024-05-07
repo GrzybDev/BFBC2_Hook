@@ -1,3 +1,5 @@
+// ProxyTCP.hpp : Defines the ProxyTCP class, which handles the TCP proxy operations.
+
 #pragma once
 #include "ConnectionPlasma.hpp"
 #include "WebSocketClient.hpp"

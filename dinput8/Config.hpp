@@ -1,4 +1,6 @@
+// Config.hpp : Defines the configuration settings for the application.
 #pragma once
+
 #include "ExecutableType.hpp"
 
 using boost::property_tree::ptree;

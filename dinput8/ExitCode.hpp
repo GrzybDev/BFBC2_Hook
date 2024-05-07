@@ -1,3 +1,4 @@
+// ExitCode.hpp : Defines the ExitCode enumeration, which represents the possible exit codes of the application.
 #pragma once
 
 enum ExitCode

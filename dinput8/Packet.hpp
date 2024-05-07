@@ -1,3 +1,4 @@
+// Packet.hpp : Defines the Packet class, which handles the creation and manipulation of packets.
 #pragma once
 
 class Packet

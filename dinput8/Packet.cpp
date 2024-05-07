@@ -1,3 +1,4 @@
+// Packet.cpp : Defines the Packet class, which handles the processing of packets.
 #include "pch.hpp"
 
 Packet::Packet(const boost::array<char, PACKET_MAX_LENGTH>& data, const size_t size)

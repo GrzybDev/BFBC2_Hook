@@ -1,3 +1,4 @@
+// PatchSSL.hpp : Defines the PatchSSL class, which handles the patching of SSL certificate verification.
 #pragma once
 
 class PatchSSL

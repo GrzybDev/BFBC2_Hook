@@ -1,3 +1,4 @@
+// Proxy.hpp : Defines the Proxy class, which handles the proxy operations.
 #pragma once
 
 class Proxy

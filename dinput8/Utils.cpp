@@ -1,3 +1,4 @@
+// Utils.cpp : Defines utility functions used throughout the application.
 #include "pch.hpp"
 
 VOID Utils::CenterPrint(std::string text, const CHAR filler, const bool endNewLine)

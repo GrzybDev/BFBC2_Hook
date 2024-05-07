@@ -1,3 +1,4 @@
+// Hook.hpp : Defines the Hook class, which handles the initialization, game version verification, and game patching.
 #pragma once
 
 #include "pch.hpp"

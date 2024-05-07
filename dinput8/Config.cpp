@@ -1,21 +1,24 @@
+// Config.cpp : Defines the configuration settings for the application.
 #include "pch.hpp"
 
 Config::Config()
 {
+	// Define the path to the configuration file
 	const auto configPath = "config.json";
 	ptree pt;
 
 	try
 	{
+		// Try to read the configuration file
 		read_json(configPath, pt);
 	}
 	catch (boost::property_tree::json_parser_error& e)
 	{
-		// Will use default in case of parse error
+		// If there is a parse error, use the default configuration
 
 		if (boost::filesystem::exists(configPath))
 		{
-			// Print parse error only if it's actual parse error
+			// If the configuration file exists, print the parse error
 			auto temp = std::string(e.what());
 			const auto errMessage = std::wstring(temp.begin(), temp.end());
 			const auto message = L"Hook will use default configs because error occured while parsing config file: " +
@@ -38,11 +41,13 @@ Config::Config()
 
 	if (domains)
 	{
+		// If there are allowed domains in the configuration file, read them
 		BOOST_FOREACH(boost::property_tree::ptree::value_type & field, pt.get_child("client.allowedDomains"))
 			allowedDomains.push_back(field.second.data());
 	}
 	else
 	{
+		// If there are no allowed domains in the configuration file, use the default domains
 		allowedDomains.emplace_back("bfbc2-pc.fesl.ea.com"); // FESL Client
 		allowedDomains.emplace_back("bfbc2-pc.theater.ea.com"); // Theater Client
 		allowedDomains.emplace_back("bfbc2-pc-server.fesl.ea.com"); // FESL Server

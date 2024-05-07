@@ -1,3 +1,4 @@
+// Utils.hpp : Defines the Utils class, which provides utility functions used throughout the application.
 #pragma once
 
 class Utils

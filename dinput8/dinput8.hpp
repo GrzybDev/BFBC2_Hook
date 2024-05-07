@@ -1,3 +1,4 @@
+// dinput8.hpp : Defines the DirectInput8Create function prototype and related types for the DLL application.
 #pragma once
 #include <Unknwn.h>
 
