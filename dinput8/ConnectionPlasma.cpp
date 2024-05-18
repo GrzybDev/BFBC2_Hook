@@ -74,6 +74,9 @@ void ConnectionPlasma::HandleRead(const boost::system::error_code& error, const 
 		BOOST_LOG_TRIVIAL(debug) << boost::format("[GAME (Plasma)] -> [SERVER] %s 0x%08x (%i bytes) {%s}")
 			% packet.service % packet.kind % packet.length % packet.data;
 
+		// Clear the buffer
+		buffer_.fill(0);
+
 		gameSocket_.async_read_some(buffer(buffer_, PACKET_MAX_LENGTH),
 		                            boost::bind(&ConnectionPlasma::HandleRead, shared_from_this(),
 		                                        placeholders::error, placeholders::bytes_transferred));

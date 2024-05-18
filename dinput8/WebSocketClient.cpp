@@ -118,6 +118,9 @@ void WebSocketClient::OnRead(const beast::error_code& ec, std::size_t bytesTrans
 	std::memcpy(readBuf.data(), buffer_.data().data(), bytesTransferred);
 	plasmaWrite_(readBuf, bytesTransferred);
 
+	// Clear the buffer
+	buffer_.clear();
+
 	if (isSecure_)
 	{
 		// Read a message into our buffer
