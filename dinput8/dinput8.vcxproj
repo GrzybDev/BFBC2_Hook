@@ -50,6 +50,13 @@
       <EnableUAC>false</EnableUAC>
       <AdditionalLibraryDirectories>$(SolutionDir)dependencies\boost\lib;$(SolutionDir)dependencies\detours\lib;$(SolutionDir)dependencies\openssl\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
+    <PostBuildEvent>
+      <Command>copy /Y $(SolutionDir)dependencies\openssl\bin\libeay32.dll $(TargetDir)libeay32.dll
+copy /Y $(SolutionDir)dependencies\openssl\bin\ssleay32.dll $(TargetDir)ssleay32.dll</Command>
+    </PostBuildEvent>
+    <PostBuildEvent>
+      <Message>Copy required third-party libraries to target folder</Message>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Config.hpp" />
