@@ -43,6 +43,13 @@ void ProxyTCP::StartAccept()
 		acceptor_.async_accept(newPlasmaConnection_->GameSocket(),
 		                       bind(&ProxyTCP::HandleAcceptPlasma, this, asio::placeholders::error));
 	}
+	else
+	{
+		newTheaterConnection_.reset(
+			new ConnectionTheater(static_cast<io_context&>(acceptor_.get_executor().context()), ws_));
+		acceptor_.async_accept(newTheaterConnection_->GameSocket(),
+		                       boost::bind(&ProxyTCP::HandleAcceptTheater, this, asio::placeholders::error));
+	}
 }
 
 void ProxyTCP::HandleAcceptPlasma(const system::error_code& error)
@@ -58,6 +65,25 @@ void ProxyTCP::HandleAcceptPlasma(const system::error_code& error)
 
 	if (!error)
 		newPlasmaConnection_->Start();
+	else
+		BOOST_LOG_TRIVIAL(error) << "TCP Socket, port " << port_ << " - error: " << error.message() << ", error code: "
+			<< error.value();
+
+	StartAccept();
+}
+
+void ProxyTCP::HandleAcceptTheater(const system::error_code& error)
+{
+	BOOST_LOG_NAMED_SCOPE("Theater")
+
+	if (!acceptor_.is_open())
+	{
+		BOOST_LOG_TRIVIAL(error) << "TCP Socket, port " << port_ << " - acceptor is not open";
+		return;
+	}
+
+	if (!error)
+		newTheaterConnection_->Start();
 	else
 		BOOST_LOG_TRIVIAL(error) << "TCP Socket, port " << port_ << " - error: " << error.message() << ", error code: "
 			<< error.value();

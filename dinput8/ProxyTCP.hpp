@@ -2,6 +2,7 @@
 
 #pragma once
 #include "ConnectionPlasma.hpp"
+#include "ConnectionTheater.hpp"
 #include "WebSocketClient.hpp"
 
 using namespace boost;
@@ -24,6 +25,8 @@ private:
 	void StartAccept();
 
 	ConnectionPlasma::pointer newPlasmaConnection_;
+	ConnectionTheater::pointer newTheaterConnection_;
 
 	void HandleAcceptPlasma(const system::error_code& error);
+	void HandleAcceptTheater(const system::error_code& error);
 };
