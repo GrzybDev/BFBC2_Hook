@@ -74,6 +74,7 @@ copy /Y $(SolutionDir)dependencies\openssl\bin\ssleay32.dll $(TargetDir)ssleay32
     <ClInclude Include="Proxy.hpp" />
     <ClInclude Include="ProxyCert.hpp" />
     <ClInclude Include="ProxyTCP.hpp" />
+    <ClInclude Include="ProxyUDP.hpp" />
     <ClInclude Include="Utils.hpp" />
     <ClInclude Include="WebSocketClient.hpp" />
   </ItemGroup>
@@ -92,6 +93,7 @@ copy /Y $(SolutionDir)dependencies\openssl\bin\ssleay32.dll $(TargetDir)ssleay32
     </ClCompile>
     <ClCompile Include="Proxy.cpp" />
     <ClCompile Include="ProxyTCP.cpp" />
+    <ClCompile Include="ProxyUDP.cpp" />
     <ClCompile Include="Utils.cpp" />
     <ClCompile Include="WebSocketClient.cpp" />
   </ItemGroup>

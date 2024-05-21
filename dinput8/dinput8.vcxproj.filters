@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <Filter Include="Source Files">
@@ -111,6 +111,9 @@
     <ClInclude Include="ConnectionTheater.hpp">
       <Filter>Header Files\Hook\Proxy\Server\Connections</Filter>
     </ClInclude>
+    <ClInclude Include="ProxyUDP.hpp">
+      <Filter>Header Files\Hook\Proxy\Server</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="dllmain.cpp">
@@ -154,6 +157,9 @@
     </ClCompile>
     <ClCompile Include="ConnectionTheater.cpp">
       <Filter>Source Files\Hook\Proxy\Server\Connections</Filter>
+    </ClCompile>
+    <ClCompile Include="ProxyUDP.cpp">
+      <Filter>Source Files\Hook\Proxy\Server</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

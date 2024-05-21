@@ -27,6 +27,7 @@
 #include <boost/asio/io_service.hpp>
 #include <boost/asio/placeholders.hpp>
 #include <boost/asio/ip/tcp.hpp>
+#include <boost/asio/ip/udp.hpp>
 #include <boost/asio/ssl/stream.hpp>
 #include <boost/beast/core.hpp>
 #include <boost/beast/ssl.hpp>
