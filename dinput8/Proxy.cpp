@@ -3,6 +3,7 @@
 #include "Proxy.hpp"
 
 #include "ProxyTCP.hpp"
+#include "ProxyUDP.hpp"
 #include "WebSocketClient.hpp"
 
 using namespace boost;
@@ -25,14 +26,17 @@ Proxy::Proxy()
 			io_service ioService;
 
 			USHORT plasmaPort;
+			USHORT theaterPort;
 
 			if (config->executableType == CLIENT)
 			{
 				plasmaPort = config->hook->plasmaClientPort;
+				theaterPort = config->hook->theaterClientPort;
 			}
 			else if (config->executableType == SERVER)
 			{
 				plasmaPort = config->hook->plasmaServerPort;
+				theaterPort = config->hook->theaterServerPort;
 			}
 			else
 			{
@@ -48,7 +52,10 @@ Proxy::Proxy()
 			const auto ws = std::make_shared<WebSocketClient>(ioService, ctx, config->hook->proxySSL);
 
 			// Create a new ProxyTCP for the plasma port
-			auto plasmaProxy = new ProxyTCP(ioService, plasmaPort, true, ws);
+			new ProxyTCP(ioService, plasmaPort, true, ws);
+
+			new ProxyTCP(ioService, theaterPort, false, ws);
+			new ProxyUDP(ioService, theaterPort, ws);
 
 			BOOST_LOG_TRIVIAL(info) << "Finished initialization, ready for receiving incoming connections!";
 			ioService.run(); // Start the io_service
