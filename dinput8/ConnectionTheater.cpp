@@ -13,8 +13,7 @@ ConnectionTheater::ConnectionTheater(io_service& ioService,
 }
 
 ConnectionTheater::~ConnectionTheater()
-{
-}
+= default;
 
 ip::tcp::socket& ConnectionTheater::GameSocket()
 {
