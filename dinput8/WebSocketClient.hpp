@@ -16,6 +16,8 @@ public:
 	void Connect(const std::string& host, const USHORT& port, const std::string& target);
 
 	void SetPlasmaCallback(const std::function<void(boost::array<char, PACKET_MAX_LENGTH>, size_t)>& callback);
+	void SetTheaterCallback(const std::function<void(boost::array<char, PACKET_MAX_LENGTH>, size_t)>& callback);
+
 	void Write(boost::array<char, PACKET_MAX_LENGTH> data, size_t size);
 	void Disconnect();
 
@@ -26,6 +28,7 @@ private:
 	beast::flat_buffer buffer_;
 
 	std::function<void(boost::array<char, PACKET_MAX_LENGTH>, size_t)> plasmaWrite_;
+	std::function<void(boost::array<char, PACKET_MAX_LENGTH>, size_t)> theaterWrite_;
 
 	bool isSecure_;
 

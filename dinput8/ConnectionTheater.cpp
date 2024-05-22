@@ -22,6 +22,11 @@ ip::tcp::socket& ConnectionTheater::GameSocket()
 
 void ConnectionTheater::Start()
 {
+	ws_->SetTheaterCallback([this](const boost::array<char, PACKET_MAX_LENGTH>& data, const size_t length)
+	{
+		SendToGame(data, length);
+	});
+
 	gameSocket_.async_read_some(buffer(buffer_, USHRT_MAX),
 	                            bind(&ConnectionTheater::HandleRead, shared_from_this(),
 	                                 placeholders::error,

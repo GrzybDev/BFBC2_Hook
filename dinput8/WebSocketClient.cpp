@@ -14,6 +14,11 @@ void WebSocketClient::SetPlasmaCallback(
 	plasmaWrite_ = callback;
 }
 
+void WebSocketClient::SetTheaterCallback(const std::function<void(boost::array<char, 8192>, size_t)>& callback)
+{
+	theaterWrite_ = callback;
+}
+
 void WebSocketClient::Connect(const std::string& host, const USHORT& port, const std::string& target)
 {
 	std::string fullAddress = (isSecure_ ? "wss://" : "ws://") + host + ":" + std::to_string(port) + target;
@@ -116,7 +121,20 @@ void WebSocketClient::OnRead(const beast::error_code& ec, std::size_t bytesTrans
 
 	boost::array<char, PACKET_MAX_LENGTH> readBuf;
 	std::memcpy(readBuf.data(), buffer_.data().data(), bytesTransferred);
-	plasmaWrite_(readBuf, bytesTransferred);
+
+	// Decide where to write the data
+	const int messageTypeRaw = Utils::DecodeInt(readBuf.data() + TYPE_OFFSET, HEADER_VALUE_LENGTH);
+	const int messageType = messageTypeRaw & 0xFF000000;
+
+	// 0x80000000 = PlasmaResponse
+	// 0xB0000000 = PlasmaChunkedResponse
+	// 0x00000000 = TheaterResponse
+	if (messageType == 0x80000000 || messageType == 0xB0000000)
+		plasmaWrite_(readBuf, bytesTransferred);
+	else if (messageType == 0x00000000)
+		theaterWrite_(readBuf, bytesTransferred);
+	else
+		BOOST_LOG_TRIVIAL(error) << "Unknown message type: " << std::hex << messageType;
 
 	// Clear the buffer
 	buffer_.clear();
