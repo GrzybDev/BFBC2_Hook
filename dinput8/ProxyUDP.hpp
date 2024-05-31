@@ -19,4 +19,6 @@ private:
 
 	void HandleReceive(const boost::system::error_code& error, size_t bytesTransferred);
 	void HandleSend(const boost::system::error_code& error, size_t bytesTransferred);
+
+	void SendToGame(boost::array<char, PACKET_MAX_LENGTH> data, size_t length);
 };

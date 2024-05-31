@@ -14,9 +14,16 @@ void WebSocketClient::SetPlasmaCallback(
 	plasmaWrite_ = callback;
 }
 
-void WebSocketClient::SetTheaterCallback(const std::function<void(boost::array<char, 8192>, size_t)>& callback)
+void WebSocketClient::SetTheaterCallback(
+	const std::function<void(boost::array<char, PACKET_MAX_LENGTH>, size_t)>& callback)
 {
 	theaterWrite_ = callback;
+}
+
+void WebSocketClient::SetTheaterUDPCallback(
+	const std::function<void(boost::array<char, PACKET_MAX_LENGTH>, size_t)>& callback)
+{
+	theaterUDPWrite_ = callback;
 }
 
 void WebSocketClient::Connect(const std::string& host, const USHORT& port, const std::string& target)
@@ -119,7 +126,7 @@ void WebSocketClient::OnRead(const beast::error_code& ec, std::size_t bytesTrans
 		throw std::runtime_error("Failed to read: " + ec.message());
 	}
 
-	boost::array<char, PACKET_MAX_LENGTH> readBuf;
+	boost::array<char, PACKET_MAX_LENGTH> readBuf{};
 	std::memcpy(readBuf.data(), buffer_.data().data(), bytesTransferred);
 
 	// Decide where to write the data
@@ -129,10 +136,18 @@ void WebSocketClient::OnRead(const beast::error_code& ec, std::size_t bytesTrans
 	// 0x80000000 = PlasmaResponse
 	// 0xB0000000 = PlasmaChunkedResponse
 	// 0x00000000 = TheaterResponse
+
 	if (messageType == 0x80000000 || messageType == 0xB0000000)
 		plasmaWrite_(readBuf, bytesTransferred);
 	else if (messageType == 0x00000000)
-		theaterWrite_(readBuf, bytesTransferred);
+	{
+		auto messageData = std::string(readBuf.data() + HEADER_LENGTH);
+
+		if (messageData.find("TXN=ECHO") != std::string::npos)
+			theaterUDPWrite_(readBuf, bytesTransferred);
+		else
+			theaterWrite_(readBuf, bytesTransferred);
+	}
 	else
 		BOOST_LOG_TRIVIAL(error) << "Unknown message type: " << std::hex << messageType;
 

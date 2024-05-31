@@ -17,6 +17,7 @@ public:
 
 	void SetPlasmaCallback(const std::function<void(boost::array<char, PACKET_MAX_LENGTH>, size_t)>& callback);
 	void SetTheaterCallback(const std::function<void(boost::array<char, PACKET_MAX_LENGTH>, size_t)>& callback);
+	void SetTheaterUDPCallback(const std::function<void(boost::array<char, PACKET_MAX_LENGTH>, size_t)>& callback);
 
 	void Write(boost::array<char, PACKET_MAX_LENGTH> data, size_t size);
 	void Disconnect();
@@ -29,6 +30,7 @@ private:
 
 	std::function<void(boost::array<char, PACKET_MAX_LENGTH>, size_t)> plasmaWrite_;
 	std::function<void(boost::array<char, PACKET_MAX_LENGTH>, size_t)> theaterWrite_;
+	std::function<void(boost::array<char, PACKET_MAX_LENGTH>, size_t)> theaterUDPWrite_;
 
 	bool isSecure_;
 
