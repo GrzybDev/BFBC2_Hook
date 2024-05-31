@@ -62,7 +62,7 @@ void ConnectionTheater::HandleRead(const boost::system::error_code& error, const
 
 void ConnectionTheater::SendToGame(boost::array<char, PACKET_MAX_LENGTH> data, const size_t length)
 {
-	BOOST_LOG_NAMED_SCOPE("Plasma (Write)")
+	BOOST_LOG_NAMED_SCOPE("Theater (Write)")
 
 	const Packet packet(data, length);
 	write(gameSocket_, buffer(data, length));
@@ -73,7 +73,7 @@ void ConnectionTheater::SendToGame(boost::array<char, PACKET_MAX_LENGTH> data, c
 
 void ConnectionTheater::HandleStop() const
 {
-	BOOST_LOG_NAMED_SCOPE("Plasma (Stop)")
+	BOOST_LOG_NAMED_SCOPE("Theater (Stop)")
 
 	ws_->Disconnect();
 
