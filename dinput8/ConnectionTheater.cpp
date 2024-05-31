@@ -42,7 +42,7 @@ void ConnectionTheater::HandleRead(const boost::system::error_code& error, const
 		const Packet packet(buffer_, bytesTransferred);
 		ws_->Write(buffer_, bytesTransferred);
 
-		BOOST_LOG_TRIVIAL(debug) << boost::format("[GAME (Theater)] -> [SERVER] %s 0x%08x (%i bytes) {%s}")
+		BOOST_LOG_TRIVIAL(debug) << boost::format("[GAME] -> [SERVER] %s 0x%08x (%i bytes) {%s}")
 				% packet.service % packet.kind % packet.length % packet.data;
 
 		// Clear the buffer
@@ -67,7 +67,7 @@ void ConnectionTheater::SendToGame(boost::array<char, PACKET_MAX_LENGTH> data, c
 	const Packet packet(data, length);
 	write(gameSocket_, buffer(data, length));
 
-	BOOST_LOG_TRIVIAL(debug) << boost::format("[GAME (Theater)] <- [SERVER] %s 0x%08x (%i bytes) {%s}")
+	BOOST_LOG_TRIVIAL(debug) << boost::format("[GAME] <- [SERVER] %s 0x%08x (%i bytes) {%s}")
 		% packet.service % packet.kind % packet.length % packet.data;
 }
 
