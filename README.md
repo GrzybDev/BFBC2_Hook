@@ -50,8 +50,8 @@ Compiling
 
 See [build workflow](https://github.com/GrzybDev/BFBC2_Hook/blob/main/.github/workflows/build.yaml) for more detailed steps
 
-1. Create `third_party` folder in project root
-2. Build requirements (specified in [Build Requirements](#build-requirements)) to `third_party` folder in project root, each library has to be installed in its own folder (look at [external](https://github.com/GrzybDev/BFBC2_Hook/tree/main/external) folder structure for naming)
+1. Create `dependencies` folder in project root
+2. Build requirements (specified in [Build Requirements](#build-requirements)) to `dependencies` folder in project root, each library has to be installed in its own folder (look at [external](https://github.com/GrzybDev/BFBC2_Hook/tree/main/external) folder structure for naming)
 3. Build project in Visual Studio (It has to be x86 Release build, it's the only one configuration setup, but please check before doing that)
 
 Installing
