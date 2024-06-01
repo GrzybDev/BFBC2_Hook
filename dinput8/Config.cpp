@@ -53,6 +53,7 @@ Config::Config()
 		allowedDomains.emplace_back("bfbc2-pc-server.fesl.ea.com"); // FESL Server
 		allowedDomains.emplace_back("bfbc2-pc-server.theater.ea.com"); // Theater Server
 		allowedDomains.emplace_back("easo.ea.com"); // EASO
+		allowedDomains.emplace_back("bfbc2.gos.ea.com"); // GOS
 	}
 
 	hook->allowedDomains = allowedDomains;
