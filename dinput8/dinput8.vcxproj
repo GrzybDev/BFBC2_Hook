@@ -67,12 +67,15 @@ copy /Y $(SolutionDir)dependencies\openssl\bin\ssleay32.dll $(TargetDir)ssleay32
     <ClInclude Include="ExitCode.hpp" />
     <ClInclude Include="framework.hpp" />
     <ClInclude Include="Hook.hpp" />
+    <ClInclude Include="HttpClient.hpp" />
+    <ClInclude Include="HttpHandler.hpp" />
     <ClInclude Include="Packet.hpp" />
     <ClInclude Include="PatchDNS.hpp" />
     <ClInclude Include="PatchSSL.hpp" />
     <ClInclude Include="pch.hpp" />
     <ClInclude Include="Proxy.hpp" />
     <ClInclude Include="ProxyCert.hpp" />
+    <ClInclude Include="ProxyHTTP.hpp" />
     <ClInclude Include="ProxyTCP.hpp" />
     <ClInclude Include="ProxyUDP.hpp" />
     <ClInclude Include="Utils.hpp" />
@@ -85,6 +88,8 @@ copy /Y $(SolutionDir)dependencies\openssl\bin\ssleay32.dll $(TargetDir)ssleay32
     <ClCompile Include="dinput8.cpp" />
     <ClCompile Include="dllmain.cpp" />
     <ClCompile Include="Hook.cpp" />
+    <ClCompile Include="HttpClient.cpp" />
+    <ClCompile Include="HttpHandler.cpp" />
     <ClCompile Include="Packet.cpp" />
     <ClCompile Include="PatchDNS.cpp" />
     <ClCompile Include="PatchSSL.cpp" />
@@ -92,6 +97,7 @@ copy /Y $(SolutionDir)dependencies\openssl\bin\ssleay32.dll $(TargetDir)ssleay32
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="Proxy.cpp" />
+    <ClCompile Include="ProxyHTTP.cpp" />
     <ClCompile Include="ProxyTCP.cpp" />
     <ClCompile Include="ProxyUDP.cpp" />
     <ClCompile Include="Utils.cpp" />

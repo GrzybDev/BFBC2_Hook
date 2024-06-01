@@ -2,6 +2,8 @@
 #include "pch.hpp"
 #include "Proxy.hpp"
 
+#include "HttpClient.hpp"
+#include "ProxyHTTP.hpp"
 #include "ProxyTCP.hpp"
 #include "ProxyUDP.hpp"
 #include "WebSocketClient.hpp"
@@ -47,8 +49,9 @@ Proxy::Proxy()
 
 			BOOST_LOG_TRIVIAL(info) << "Initializing...";
 
-			// Create a context for the TLSv1.2 client and a shared pointer to a WebSocketClient
+			// Create a context for the TLSv1.2 client and a shared pointer to both HttpClient and WebSocketClient
 			context ctx(context::tlsv12_client);
+			const auto http = std::make_shared<HttpClient>(ioService, ctx, config->hook->proxySSL);
 			const auto ws = std::make_shared<WebSocketClient>(ioService, ctx, config->hook->proxySSL);
 
 			// Create a new ProxyTCP for the plasma port
@@ -56,6 +59,8 @@ Proxy::Proxy()
 
 			new ProxyTCP(ioService, theaterPort, false, ws);
 			new ProxyUDP(ioService, theaterPort, ws);
+
+			new ProxyHTTP(ioService, HTTP_PORT, http);
 
 			BOOST_LOG_TRIVIAL(info) << "Finished initialization, ready for receiving incoming connections!";
 			ioService.run(); // Start the io_service

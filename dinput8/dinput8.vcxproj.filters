@@ -58,6 +58,12 @@
     <Filter Include="Header Files\Hook\Proxy\Server\Connections">
       <UniqueIdentifier>{61707c47-3017-4839-a3f8-a2bf0255ad01}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Hook\Proxy\Server\WebServer">
+      <UniqueIdentifier>{8160dccb-ab3b-4bf7-83c1-de3912eeff7c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Hook\Proxy\Server\WebServer">
+      <UniqueIdentifier>{925322e3-c0f1-41dd-8c2b-445a7b015644}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.hpp">
@@ -114,6 +120,15 @@
     <ClInclude Include="ProxyUDP.hpp">
       <Filter>Header Files\Hook\Proxy\Server</Filter>
     </ClInclude>
+    <ClInclude Include="ProxyHTTP.hpp">
+      <Filter>Header Files\Hook\Proxy\Server</Filter>
+    </ClInclude>
+    <ClInclude Include="HttpHandler.hpp">
+      <Filter>Header Files\Hook\Proxy\Server\WebServer</Filter>
+    </ClInclude>
+    <ClInclude Include="HttpClient.hpp">
+      <Filter>Header Files\Hook\Proxy\Client</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="dllmain.cpp">
@@ -160,6 +175,15 @@
     </ClCompile>
     <ClCompile Include="ProxyUDP.cpp">
       <Filter>Source Files\Hook\Proxy\Server</Filter>
+    </ClCompile>
+    <ClCompile Include="ProxyHTTP.cpp">
+      <Filter>Source Files\Hook\Proxy\Server</Filter>
+    </ClCompile>
+    <ClCompile Include="HttpHandler.cpp">
+      <Filter>Source Files\Hook\Proxy\Server\WebServer</Filter>
+    </ClCompile>
+    <ClCompile Include="HttpClient.cpp">
+      <Filter>Source Files\Hook\Proxy\Client</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
