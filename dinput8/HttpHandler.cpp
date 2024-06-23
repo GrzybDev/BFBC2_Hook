@@ -31,11 +31,11 @@ void HttpHandler::ProcessRequest(const system::error_code& error, size_t bytesTr
 		const auto config = &Config::GetInstance();
 
 		// Set up an HTTP GET request message
-		request_.set(http::field::host, config->hook->proxyAddress);
+		request_.set(http::field::host, config->hook->proxyHost);
 
 		try
 		{
-			response_ = http_->Execute(config->hook->proxyAddress, config->hook->proxyPort, request_);
+			response_ = http_->Execute(config->hook->proxyHost, config->hook->proxyPort, request_);
 
 			http::async_write(game_socket_, response_, bind(&HttpHandler::HandleWrite, shared_from_this(),
 			                                                asio::placeholders::error,

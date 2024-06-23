@@ -80,7 +80,7 @@ Config::Config()
 
 	// Section - Proxy
 	hook->proxyEnable = pt.get("proxy.enable", true);
-	hook->proxyAddress = pt.get("proxy.address", "bfbc2.grzyb.app");
+	hook->proxyHost = pt.get("proxy.host", "bfbc2.grzyb.app");
 	hook->proxyPort = pt.get("proxy.port", HTTPS_PORT);
 	hook->proxyPath = pt.get("proxy.path", "/ws");
 	hook->proxySSL = pt.get("proxy.secure", true);

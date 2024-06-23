@@ -48,7 +48,7 @@ public:
 
 		/* Proxy */
 		bool proxyEnable;
-		std::string proxyAddress;
+		std::string proxyHost;
 		USHORT proxyPort;
 		std::string proxyPath;
 		bool proxySSL;

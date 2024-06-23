@@ -41,7 +41,7 @@ void ConnectionPlasma::HandleHandshake(const boost::system::error_code& error)
 		BOOST_LOG_TRIVIAL(debug) << "New connection, initializing...";
 
 		const auto config = &Config::GetInstance();
-		ws_->Connect(config->hook->proxyAddress, config->hook->proxyPort, config->hook->proxyPath);
+		ws_->Connect(config->hook->proxyHost, config->hook->proxyPort, config->hook->proxyPath);
 
 		gameSocket_.async_read_some(buffer(buffer_, PACKET_MAX_LENGTH),
 		                            boost::bind(&ConnectionPlasma::HandleRead, shared_from_this(),
