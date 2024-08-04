@@ -20,6 +20,8 @@ public:
 	void SetTheaterUDPCallback(const std::function<void(boost::array<char, PACKET_MAX_LENGTH>, size_t)>& callback);
 
 	void Write(boost::array<char, PACKET_MAX_LENGTH> data, size_t size);
+	void WriteText(std::string text);
+
 	void Disconnect();
 
 private:

@@ -182,6 +182,18 @@ void WebSocketClient::Write(boost::array<char, PACKET_MAX_LENGTH> data, const si
 		ws_.write(boost::asio::buffer(data, size));
 }
 
+void WebSocketClient::WriteText(std::string text)
+{
+	if (isSecure_)
+	{
+		wss_.write(net::buffer(text));
+	}
+	else
+	{
+		ws_.write(net::buffer(text));
+	}
+}
+
 void WebSocketClient::Disconnect()
 {
 	if (isSecure_)

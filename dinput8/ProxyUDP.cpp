@@ -36,6 +36,9 @@ void ProxyUDP::HandleReceive(const system::error_code& error, size_t bytesTransf
 
 	if (!error && bytesTransferred > 0)
 	{
+		std::string remoteMeta = "META|" + remote_endpoint.address().to_string() + "|" + std::to_string(remote_endpoint.port());
+		ws_->WriteText(remoteMeta);
+
 		const Packet packet(buffer_, bytesTransferred);
 		ws_->Write(buffer_, bytesTransferred);
 
