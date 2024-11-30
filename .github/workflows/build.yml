@@ -56,19 +56,13 @@ jobs:
       
       - name: Initialize CodeQL
         uses: github/codeql-action/init@v3
-        if: ${{ github.event_name != 'release' }}
         with:
           queries: security-extended,security-and-quality
           languages: "cpp"
           source-root: dinput8
       
       - name: Autobuild hook
-        if: ${{ github.event_name != 'release' }}
         uses: github/codeql-action/autobuild@v3
-
-      - name: Build hook
-        if: ${{ github.event_name == 'release' }}
-        run: msbuild /p:Platform="x86" /p:Configuration="Release"
 
       - name: Perform CodeQL Analysis
         if: ${{ github.event_name != 'release' }}
