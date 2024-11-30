@@ -17,17 +17,16 @@ Game Info
 ---------
 ![Battlefield: Bad Company 2 Cover](https://upload.wikimedia.org/wikipedia/en/b/b3/Battlefield_Bad_Company_2_cover.jpg "Battlefield: Bad Company 2 Cover")
 
-|         Type | Value                                                        |
-|-------------:|:-------------------------------------------------------------|
-| Developer(s) | EA DICE                                                      |
-| Publisher(s) | Electronic Arts                                              |
-|    Writer(s) | David Goldfarb                                               |
-|  Composer(s) | Mikael Karlsson, Joel Eriksson                               |
-|       Series | Battlefield                                                  |
-|       Engine | Frostbite 1.5                                                |
-|  Platform(s) | Microsoft Windows, PlayStation 3, Xbox 360, iOS, Kindle Fire |
-|     Genre(s) | First-person shooter                                         |
-|      Mode(s) | Single-player, Multi-Player                                  |
+|         Type | Value                                                          |
+|-------------:|:---------------------------------------------------------------|
+| Developer(s) | EA DICE                                                        |
+| Publisher(s) | Electronic Arts                                                |
+|  Producer(s) | Patrick Bach, Djörn Johnsson, John Hargelid, Anders Gyllenberg |
+|       Series | Battlefield                                                    |
+|       Engine | Frostbite 1.5                                                  |
+|  Platform(s) | Microsoft Windows, PlayStation 3, Xbox 360, iOS, Kindle Fire   |
+|     Genre(s) | First-person shooter                                           |
+|      Mode(s) | Single-player, Multi-Player                                    |
 
 Legal notes
 -----------
@@ -51,7 +50,7 @@ Compiling
 See [build workflow](https://github.com/GrzybDev/BFBC2_Hook/blob/main/.github/workflows/build.yaml) for more detailed steps
 
 1. Create `dependencies` folder in project root
-2. Build requirements (specified in [Build Requirements](#build-requirements)) to `dependencies` folder in project root, each library has to be installed in its own folder (look at [external](https://github.com/GrzybDev/BFBC2_Hook/tree/main/external) folder structure for naming)
+2. Build requirements (specified in [Build Requirements](#build-requirements)) to `dependencies` folder in project root, each library has to be installed in its own folder (look at [libs](https://github.com/GrzybDev/BFBC2_Hook/tree/main/libs) folder structure for naming)
 3. Build project in Visual Studio (It has to be x86 Release build, it's the only one configuration setup, but please check before doing that)
 
 Installing
