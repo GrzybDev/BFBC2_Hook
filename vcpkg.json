@@ -1,0 +1,10 @@
+{
+  "dependencies": [
+    "boost-beast",
+	"boost-log",
+    "boost-foreach",
+    "boost-format",
+    "boost-property-tree",
+    "detours"
+  ]
+}

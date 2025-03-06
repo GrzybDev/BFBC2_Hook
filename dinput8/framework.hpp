@@ -41,7 +41,7 @@
 #pragma comment(lib, "ws2_32.lib")
 
 // Detours Library Headers
-#include "detours.h"
+#include "detours/detours.h"
 #pragma comment(lib, "detours.lib")
 
 // OpenSSL Library
