@@ -1,5 +1,5 @@
 {
 	"name": "Battlefield: Bad Company 2 Proxy Hook",
-	"platform": ["Windows"],
+	"platforms": ["Windows"],
 	"type": "Hook"
 }
